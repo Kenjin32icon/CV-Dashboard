@@ -99,3 +99,42 @@ with col4:
     
     # Combined ongoing certifications
     st.warning("⏳ **Data Analysis with Python & Data Science** - freeCodeCamp (Ongoing)")
+    
+    # --- WHATSAPP FLOATING BUTTON ---
+def add_whatsapp_button(phone_number, message="Hello! I'm interested in your services."):
+    import urllib.parse
+    encoded_message = urllib.parse.quote(message)
+    whatsapp_url = f"https://wa.me/{phone_number}?text={encoded_message}"
+
+    st.markdown(
+        f"""
+        <style>
+        .float-btn {{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }}
+        </style>
+        <a href="{whatsapp_url}" class="float-btn" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35px">
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
+
+# 2. CALL the function at the very bottom of your script with your real number
+# Use quotes around the number so Python treats it as a string
+add_whatsapp_button("254746668098")
