@@ -82,7 +82,7 @@ col3, col4 = st.columns(2)
 
 with col3:
     st.header("🎓 Education")
-    st.write("**Bachelor of Library & Information Science (Informatics)**")
+    st.write("**Bachelor of Information Science (Informatics)**")
     st.write("🏫 *Technical University of Kenya (Current Year 4 Student)*")
     st.write("**Relevant Coursework:**")
     st.caption("""
