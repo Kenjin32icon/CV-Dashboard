@@ -40,53 +40,55 @@ with st.sidebar:
     st.image("profile.jpg", width=150)
     except:
       st.info("Upload 'profile.jpg' to show photo")
-‎    
-‎    st.title("Lewis Kariuki")
-‎    st.subheader("Navigation")
-‎    selection = st.radio("Go to:", ["Dashboard Home", "Professional Experience", "Key Projects", "Education & Certs"])
-‎    
-‎    st.divider()
-‎    st.header("🛠️ Core Competencies")
-‎    skills_data = pd.DataFrame({
-‎        'Skill': ['Data Entry', 'Analysis', 'Visualization', 'Research', 'Digital Media'],
+      st.title("Lewis Kariuki")
+      st.subheader("Navigation")
+      selection = st.radio("Go to:", ["Dashboard Home", "Professional Experience", "Key Projects", "Education & Certs"])
+      st.divider()
+      st.header("🛠️ Core Competencies")
+      skills_data = pd.DataFrame({
+        'Skill': ['Data Entry', 'Analysis', 'Visualization', 'Research', 'Digital Media'],
 ‎        'Proficiency': [95, 90, 85, 85, 75]
 ‎    })
-‎    fig_skills = px.line_polar(skills_data, r='Proficiency', theta='Skill', line_close=True, template="plotly_dark")
-‎    fig_skills.update_traces(fill='toself')
-
-st.plotly_chart(fig_skills, use_container_width=True)
-
+      fig_skills = px.line_polar(skills_data, r='Proficiency', theta='Skill', line_close=True, template="plotly_dark")
+      fig_skills.update_traces(fill='toself')
+      st.plotly_chart(fig_skills, use_container_width=True)
+      
 # --- MAIN SECTIONS ---
-‎if selection == "Dashboard Home":
-‎    st.title("📊 Lewis Kariuki")
-‎    st.subheader("Data Research & Analysis Service Provider")
-‎    st.markdown("**📍 Nairobi, Kenya | 📞 +254746668098 | 🔗 [LinkedIn](https://www.linkedin.com/in/lewis-kariuki-7aa753236/) | 🔗 [Github](https://github.com/kenjin32icon)**")
-‎    st.write("""
-‎    Detail-oriented Data Analyst and Researcher with a strong background in Information Science. 
-‎    [span_1](start_span)Expert in transforming raw datasets into actionable insights through rigorous cleaning, analysis, and visualization[span_1](end_span).
-‎    """)
-‎    st.divider()
+if selection == "Dashboard Home":
+  
+st.title("📊 Lewis Kariuki")
+st.subheader("Data Research & Analysis Service Provider")
+st.markdown("**📍 Nairobi, Kenya | 📞 +254746668098 | 🔗 [LinkedIn](https://www.linkedin.com/in/lewis-kariuki-7aa753236/) | 🔗 [Github](https://github.com/kenjin32icon)**")
+st.write("""
+Detail-oriented Data Analyst and Researcher with a strong background in Information Science. 
+[span_1](start_span)Expert in transforming raw datasets into actionable insights through rigorous cleaning, analysis, and visualization[span_1](end_span).
+
+""")
+
+st.divider()
 
 # Quick highlights
-‎    col_a, col_b = st.columns(2)
-‎    with col_a:
-‎        st.info("🚀 **Currently focused on:** Advanced Data Analysis & Machine Learning")
-‎    with col_b:
-‎        [span_2](start_span)st.success("🏆 **Latest Achievement:** Mapping project presented at Kenyan National Museum[span_2](end_span).")
-‎elif selection == "Professional Experience":
-‎    st.header("💼 Professional Experience")
+
+col_a, col_b = st.columns(2)
+with col_a:
+  st.info("🚀 **Currently focused on:** Advanced Data Analysis & Machine Learning")
+with col_b:
+  [span_2](start_span)st.success("🏆 **Latest Achievement:** Mapping project presented at Kenyan National Museum[span_2](end_span).")
+elif selection == "Professional Experience":
+st.header("💼 Professional Experience")
 
 # --- COSEKE SECTION ---
-‎    with st.expander("Data Entry Clerk | COSEKE KENYA LIMITED", expanded=True):
-‎        st.markdown("### **COSEKE KENYA LIMITED**")
-‎        st.caption("📅 May 2023 - Feb 2026 (2 yrs 10 mos) | Full-time | On-site (Nairobi County, Kenya)")
-‎        st.write("""
-‎        COSEKE enabled me to update my knowledge in document digitization procedures, data cleaning, and indexing. 
-‎        I participated in digitizing records for various organizations around Nairobi CBD, including:
-‎        - **Kenya Police Office** (Sky Park Westlands)
-‎        - **Stima Sacco Plaza**
-‎        - **Trade Development Bank Tower** (TDB Tower Lenana Road)
-‎        """)
+with st.expander("Data Entry Clerk | COSEKE KENYA LIMITED", expanded=True):
+  
+st.markdown("### **COSEKE KENYA LIMITED**")
+st.caption("📅 May 2023 - Feb 2026 (2 yrs 10 mos) | Full-time | On-site (Nairobi County, Kenya)")
+st.write("""
+COSEKE enabled me to update my knowledge in document digitization procedures, data cleaning, and indexing. 
+I participated in digitizing records for various organizations around Nairobi CBD, including:
+- **Kenya Police Office** (Sky Park Westlands)
+- **Stima Sacco Plaza**
+- **Trade Development Bank Tower** (TDB Tower Lenana Road)
+""")
 ‎        
 ‎        st.write("**Key Contributions:**")
 ‎        [span_3](start_span)[span_4](start_span)st.write("- **Data Optimization:** Revamped entry procedures to increase accuracy and significantly reduce reporting turnaround time[span_3](end_span)[span_4](end_span).")
