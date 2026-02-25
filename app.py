@@ -101,7 +101,7 @@ with col4:
     st.warning("⏳ **Data Analysis with Python & Data Science** - freeCodeCamp (Ongoing)")
     
     # --- WHATSAPP FLOATING BUTTON ---
-def add_whatsapp_button(phone_number, message="Hello! I'm interested in your services."):
+def add_whatsapp_button(phone_number, message="Hello Lewis! I'm interested in your services."):
     import urllib.parse
     encoded_message = urllib.parse.quote(message)
     whatsapp_url = f"https://wa.me/{phone_number}?text={encoded_message}"
