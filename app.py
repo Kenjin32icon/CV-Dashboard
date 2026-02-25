@@ -14,6 +14,7 @@ with st.sidebar:
     # This centers the image and gives it a nice width
     st.image(profile_pic, width=150)
     st.markdown(f"### { 'Lewis Kariuki' }") # Your name from CV [cite: 1]
+    
 # --- HEADER SECTION ---
 st.title("📊 Lewis Kariuki")
 st.subheader("Data Research & Analysis Service Provider")
