@@ -5,6 +5,15 @@ import plotly.express as px
 # --- PAGE CONFIGURATION ---
 st.set_page_config(page_title="Lewis Kariuki | Data Portfolio", page_icon="📊", layout="wide")
 
+# --- LOAD PROFILE PIC ---
+# Use the file name you saved in your folder
+profile_pic = "Profile pic.jpeg" 
+
+# --- DISPLAY IN SIDEBAR ---
+with st.sidebar:
+    # This centers the image and gives it a nice width
+    st.image(profile_pic, width=150)
+    st.markdown(f"### { 'Lewis Kariuki' }") # Your name from CV [cite: 1]
 # --- HEADER SECTION ---
 st.title("📊 Lewis Kariuki")
 st.subheader("Data Research & Analysis Service Provider")
