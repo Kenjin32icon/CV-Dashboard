@@ -3,11 +3,8 @@ import pandas as pd
 import plotly.express as px
 from PIL import Image
 
-‎
-‎# --- PAGE CONFIGURATION ---
+# --- PAGE CONFIGURATION ---
 ‎st.set_page_config(page_title="Lewis Kariuki | Data Portfolio", page_icon="📊", layout="wide")
-‎
-‎
 
 # --- CUSTOM CSS FOR FLOATING BUTTON & STYLING ---
 ‎st.markdown("""
@@ -34,8 +31,6 @@ from PIL import Image
 ‎    }
 ‎    </style>
 ‎    """, unsafe_allow_html=True)
-‎
-‎
 # --- SIDEBAR NAVIGATION ---
 ‎with st.sidebar:
 ‎    # Profile Picture Placeholder (Ensure 'profile.jpg' is in your folder)
@@ -57,11 +52,7 @@ from PIL import Image
 ‎    fig_skills = px.line_polar(skills_data, r='Proficiency', theta='Skill', line_close=True, template="plotly_dark")
 ‎    fig_skills.update_traces(fill='toself')
 ‎    st.plotly_chart(fig_skills, use_container_width=True)
-‎
-‎
-
 # --- MAIN SECTIONS ---
-‎
 ‎if selection == "Dashboard Home":
 ‎    st.title("📊 Lewis Kariuki")
 ‎    st.subheader("Data Research & Analysis Service Provider")
@@ -71,19 +62,16 @@ from PIL import Image
 ‎    [span_1](start_span)Expert in transforming raw datasets into actionable insights through rigorous cleaning, analysis, and visualization[span_1](end_span).
 ‎    """)
 ‎    st.divider()
-‎    
-‎   
+
 # Quick highlights
 ‎    col_a, col_b = st.columns(2)
 ‎    with col_a:
 ‎        st.info("🚀 **Currently focused on:** Advanced Data Analysis & Machine Learning")
 ‎    with col_b:
 ‎        [span_2](start_span)st.success("🏆 **Latest Achievement:** Mapping project presented at Kenyan National Museum[span_2](end_span).")
-‎
 ‎elif selection == "Professional Experience":
 ‎    st.header("💼 Professional Experience")
-‎
-‎    
+
 # --- COSEKE SECTION ---
 ‎    with st.expander("Data Entry Clerk | COSEKE KENYA LIMITED", expanded=True):
 ‎        st.markdown("### **COSEKE KENYA LIMITED**")
@@ -101,10 +89,9 @@ from PIL import Image
 ‎        [span_5](start_span)[span_6](start_span)st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders[span_5](end_span)[span_6](end_span).")
 ‎        [span_7](start_span)[span_8](start_span)st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows[span_7](end_span)[span_8](end_span).")
 ‎        
-‎        st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`")
-‎
-‎    
-# --- CHURCH SECTION ---
+‎        st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`"
+                     
+                    # --- CHURCH SECTION ---
 ‎    with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True):
 ‎        st.markdown("### **Media Team Apprenticeship**")
 ‎        st.caption("📅 Mar 2025 - Present (1 yr) | Nairobi County, Kenya")
