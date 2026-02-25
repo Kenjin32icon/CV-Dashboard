@@ -87,10 +87,10 @@ elif selection == "Professional Experience":
         - **Trade Development Bank Tower** (TDB Tower Lenana Road)
         """)
         
-        st.write("**Key Contributions:**")
-        [span_3](start_span)[span_4](start_span)st.write("- **Data Optimization:** Revamped entry procedures to increase accuracy and significantly reduce reporting turnaround time[span_3](end_span)[span_4](end_span).")
-        [span_5](start_span)[span_6](start_span)st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders[span_5](end_span)[span_6](end_span).")
-        [span_7](start_span)[span_8](start_span)st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows[span_7](end_span)[span_8](end_span).")
+                st.write("**Key Contributions:**")
+        st.write("- **Data Optimization:** Revamped entry procedures to increase accuracy and significantly reduce reporting turnaround time.")
+        st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders.")
+        st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows.")
         
         st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`")
 
