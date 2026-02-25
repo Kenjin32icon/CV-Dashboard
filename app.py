@@ -89,16 +89,14 @@ I participated in digitizing records for various organizations around Nairobi CB
 - **Stima Sacco Plaza**
 - **Trade Development Bank Tower** (TDB Tower Lenana Road)
 """)
-‎        
-‎        st.write("**Key Contributions:**")
-‎        [span_3](start_span)[span_4](start_span)st.write("- **Data Optimization:** Revamped entry procedures to increase accuracy and significantly reduce reporting turnaround time[span_3](end_span)[span_4](end_span).")
-‎        [span_5](start_span)[span_6](start_span)st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders[span_5](end_span)[span_6](end_span).")
-‎        [span_7](start_span)[span_8](start_span)st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows[span_7](end_span)[span_8](end_span).")
-‎        
-‎        st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`"
-                     
-                    # --- CHURCH SECTION ---
-‎    with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True):
+st.write("**Key Contributions:**")
+[span_3](start_span)[span_4](start_span)st.write("- **Data Optimization:** Revamped entry procedures to increase accuracy and significantly reduce reporting turnaround time[span_3](end_span)[span_4](end_span).")
+[span_5](start_span)[span_6](start_span)st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders[span_5](end_span)[span_6](end_span).")
+[span_7](start_span)[span_8](start_span)st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows[span_7](end_span)[span_8](end_span).")
+st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`"
+
+# --- CHURCH SECTION ---
+            with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True):
 ‎        st.markdown("### **Media Team Apprenticeship**")
 ‎        st.caption("📅 Mar 2025 - Present (1 yr) | Nairobi County, Kenya")
 ‎        st.write("I participate in the church Media Team, which has evolved the following skills:")
