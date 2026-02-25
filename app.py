@@ -39,7 +39,7 @@ with st.sidebar:
   try:
     st.image("profile.jpg", width=150)
     except:
-‎        st.info("Upload 'profile.jpg' to show photo")
+      st.info("Upload 'profile.jpg' to show photo")
 ‎    
 ‎    st.title("Lewis Kariuki")
 ‎    st.subheader("Navigation")
@@ -53,7 +53,9 @@ with st.sidebar:
 ‎    })
 ‎    fig_skills = px.line_polar(skills_data, r='Proficiency', theta='Skill', line_close=True, template="plotly_dark")
 ‎    fig_skills.update_traces(fill='toself')
-‎    st.plotly_chart(fig_skills, use_container_width=True)
+
+st.plotly_chart(fig_skills, use_container_width=True)
+
 # --- MAIN SECTIONS ---
 ‎if selection == "Dashboard Home":
 ‎    st.title("📊 Lewis Kariuki")
