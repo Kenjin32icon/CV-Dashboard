@@ -4,7 +4,7 @@ import plotly.express as px
 from PIL import Image
 
 # --- PAGE CONFIGURATION ---
-‎st.set_page_config(page_title="Lewis Kariuki | Data Portfolio", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Lewis Kariuki | Data Portfolio", page_icon="📊", layout="wide")
 
 # --- CUSTOM CSS FOR FLOATING BUTTON & STYLING ---
 ‎st.markdown("""
