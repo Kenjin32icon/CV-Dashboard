@@ -66,13 +66,12 @@ if selection == "Dashboard Home":
     """)
     st.divider()
     
-    # Quick highlights
+        # Quick highlights
     col_a, col_b = st.columns(2)
     with col_a:
         st.info("🚀 **Currently focused on:** Advanced Data Analysis & Machine Learning")
     with col_b:
-        [span_2](start_span)st.success("🏆 **Latest Achievement:** Mapping project presented at Kenyan National Museum[span_2](end_span).")
-
+        st.success("🏆 **Latest Achievement:** Mapping project presented at Kenyan National Museum.")
 elif selection == "Professional Experience":
     st.header("💼 Professional Experience")
 
