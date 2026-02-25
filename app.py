@@ -7,7 +7,7 @@ from PIL import Image
 st.set_page_config(page_title="Lewis Kariuki | Data Portfolio", page_icon="📊", layout="wide")
 
 # --- CUSTOM CSS FOR FLOATING BUTTON & STYLING ---
-‎st.markdown("""
+st.markdown("""
 ‎    <style>
 ‎    .float-btn {
 ‎        position: fixed;
