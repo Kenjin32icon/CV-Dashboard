@@ -96,47 +96,40 @@ st.write("**Key Contributions:**")
 st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`"
 
 # --- CHURCH SECTION ---
-            with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True):
-‎        st.markdown("### **Media Team Apprenticeship**")
-‎        st.caption("📅 Mar 2025 - Present (1 yr) | Nairobi County, Kenya")
-‎        st.write("I participate in the church Media Team, which has evolved the following skills:")
-‎        
-‎        [span_9](start_span)[span_10](start_span)st.write("- **Live Production:** Managing live social media broadcasts for Sunday youth services[span_9](end_span)[span_10](end_span).")
-‎        [span_11](start_span)[span_12](start_span)st.write("- **Visual Presentation:** Designing and executing presentation slides to enhance delivery and engagement[span_11](end_span)[span_12](end_span).")
-‎        [span_13](start_span)[span_14](start_span)st.write("- **Technical Operation:** Serving as a camera operator for high-quality visual capture of events[span_13](end_span)[span_14](end_span).")
-‎        
-‎        st.markdown("**Skills:** `Live Video Streaming`, `Video Camera Operation`, `Sound Board Operation`")
-‎
-‎elif selection == "Key Projects":
-‎    st.header("🚀 Key Projects & Research")
-‎    with st.container(border=True):
-‎        st.subheader("🗺️ Digitization of Historical Maps")
-‎        st.caption("TU-K & FH Potsdam University | Presented Nov 2025")
-‎        st.info("🏛️ Presented at the Kenyan National Museum")
-‎        st.write("""
-‎        - **[span_15](start_span)Process Design:** Implemented a cost-effective digitization procedure using QGIS and Hugin Panorama[span_15](end_span).
-‎        - **[span_16](start_span)Standard Compliance:** Adhered to the Open Archival Information System (OAIS) framework[span_16](end_span).
-‎        """)
-‎
-‎elif selection == "Education & Certs":
-‎    st.header("🎓 Education & Certifications")
-‎    col1, col2 = st.columns(2)
-‎    with col1:
-‎        st.subheader("Education")
-‎        st.write("**Bachelor of Library & Information Science (Informatics)**")
-‎        [span_17](start_span)st.caption("Technical University of Kenya | Current Year 4 Student[span_17](end_span).")
-‎    with col2:
-‎        st.subheader("Top Certifications")
-‎        [span_18](start_span)st.write("🥇 IBM Business Intelligence Analyst[span_18](end_span).")
-‎        [span_19](start_span)st.write("🥈 IBM Data Science Practitioner[span_19](end_span).")
-‎
-‎
+            with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True)
+            st.markdown("### **Media Team Apprenticeship**")
+            st.caption("📅 Mar 2025 - Present (1 yr) | Nairobi County, Kenya")
+            st.write("I participate in the church Media Team, which has evolved the following skills:")
+            [span_9](start_span)[span_10](start_span)st.write("- **Live Production:** Managing live social media broadcasts for Sunday youth services[span_9](end_span)[span_10](end_span).")
+            [span_11](start_span)[span_12](start_span)st.write("- **Visual Presentation:** Designing and executing presentation slides to enhance delivery and engagement[span_11](end_span)[span_12](end_span).")
+            [span_13](start_span)[span_14](start_span)st.write("- **Technical Operation:** Serving as a camera operator for high-quality visual capture of events[span_13](end_span)[span_14](end_span).")
+            st.markdown("**Skills:** `Live Video Streaming`, `Video Camera Operation`, `Sound Board Operation`")
+            elif selection == "Key Projects":
+            st.header("🚀 Key Projects & Research")
+            with st.container(border=True):
+            st.subheader("🗺️ Digitization of Historical Maps")
+            st.caption("TU-K & FH Potsdam University | Presented Nov 2025")
+            st.info("🏛️ Presented at the Kenyan National Museum")
+            st.write("""
+            - **[span_15](start_span)Process Design:** Implemented a cost-effective digitization procedure using QGIS and Hugin Panorama[span_15](end_span).
+            - **[span_16](start_span)Standard Compliance:** Adhered to the Open Archival Information System (OAIS) framework[span_16](end_span).
+            """)
+            elif selection == "Education & Certs":
+            st.header("🎓 Education & Certifications")
+            col1, col2 = st.columns(2)
+            with col1:
+            st.subheader("Education")
+st.write("**Bachelor of Information Science (Informatics)**")
+[span_17](start_span)st.caption("Technical University of Kenya | Current Year 4 Student[span_17](end_span).")
+with col2:
+st.subheader("Top Certifications")
+[span_18](start_span)st.write("🥇 IBM Business Intelligence Analyst[span_18](end_span).")
+[span_19](start_span)st.write("🥈 IBM Data Science Practitioner[span_19](end_span).")
 
 # --- FLOATING WHATSAPP BUTTON ---
-‎whatsapp_url = "https://wa.me/254746668098?text=Hello%20Lewis,%20I%20viewed%20your%20dashboard%20and..."
-‎st.markdown(f"""
-‎    <a href="{whatsapp_url}" class="float-btn" target="_blank">
-‎        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35px">
-‎    </a>
-‎    """, unsafe_allow_html=True)
-‎
+whatsapp_url = "https://wa.me/254746668098?text=Hello%20Lewis,%20I%20viewed%20your%20dashboard%20and..."
+st.markdown(f"""
+<a href="{whatsapp_url}" class="float-btn" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35px">
+</a>
+""", unsafe_allow_html=True)
