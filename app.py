@@ -86,8 +86,7 @@ elif selection == "Professional Experience":
         - **Stima Sacco Plaza**
         - **Trade Development Bank Tower** (TDB Tower Lenana Road)
         """)
-        
-                st.write("**Key Contributions:**")
+        st.write("**Key Contributions:**")
         st.write("- **Data Optimization:** Revamped entry procedures to increase accuracy and significantly reduce reporting turnaround time.")
         st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders.")
         st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows.")
