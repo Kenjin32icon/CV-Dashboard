@@ -99,7 +99,7 @@ elif selection == "Professional Experience":
     with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True):
         st.markdown("### **Media Team Apprenticeship**")
         st.caption("📅 Mar 2025 - Present (1 yr) | Nairobi County, Kenya")
-        st.write("I participate in the church Media Team, which has evolved the following skills:")
+        st.write("I participate in my church Media Team, which has evolved the following skills:")
         
         st.write("- **Live Production:** Managing live social media broadcasts for Sunday youth services.")
         st.write("- **Visual Presentation:** Designing and executing presentation slides to enhance delivery and engagement.")
