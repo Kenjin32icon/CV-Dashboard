@@ -32,7 +32,7 @@ st.markdown("""
 ‎    </style>
 ‎    """, unsafe_allow_html=True)
 # --- SIDEBAR NAVIGATION ---
-‎with st.sidebar:
+with st.sidebar:
 ‎    # Profile Picture Placeholder (Ensure 'profile.jpg' is in your folder)
 ‎    try:
 ‎        st.image("profile.jpg", width=150)
