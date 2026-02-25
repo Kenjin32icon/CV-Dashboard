@@ -31,12 +31,14 @@ st.markdown("""
 ‎    }
 ‎    </style>
 ‎    """, unsafe_allow_html=True)
+
 # --- SIDEBAR NAVIGATION ---
 with st.sidebar:
-‎    # Profile Picture Placeholder (Ensure 'profile.jpg' is in your folder)
-‎    try:
-‎        st.image("profile.jpg", width=150)
-‎    except:
+  
+# Profile Picture Placeholder (Ensure 'profile.jpg' is in your folder)
+  try:
+    st.image("profile.jpg", width=150)
+    except:
 ‎        st.info("Upload 'profile.jpg' to show photo")
 ‎    
 ‎    st.title("Lewis Kariuki")
