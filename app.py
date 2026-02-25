@@ -47,7 +47,7 @@ with st.sidebar:
       st.header("🛠️ Core Competencies")
       skills_data = pd.DataFrame({
         'Skill': ['Data Entry', 'Analysis', 'Visualization', 'Research', 'Digital Media'],
-‎        'Proficiency': [95, 90, 85, 85, 75]
+        'Proficiency': [95, 90, 85, 85, 75]
 ‎    })
       fig_skills = px.line_polar(skills_data, r='Proficiency', theta='Skill', line_close=True, template="plotly_dark")
       fig_skills.update_traces(fill='toself')
