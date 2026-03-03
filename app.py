@@ -85,8 +85,8 @@ elif selection == "Professional Experience":
         - **Kenya Police Office** (Sky Park Westlands)
         - **Stima Sacco Plaza** (Ngara)
         - **Trade Development Bank Tower** (TDB Tower Lenana Road)
-        - ** ICT Authority**(GPO TelPosta Towers)
-        - ** KPLC (Stima Plaza in Nairobi CBD)
+        - **ICT Authority** (GPO TelPosta Towers)
+        - **KPLC** (Stima Plaza in Nairobi CBD)
         """)
         
         st.write("**Key Contributions:**")
