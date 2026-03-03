@@ -81,11 +81,12 @@ elif selection == "Professional Experience":
         st.markdown("### **COSEKE KENYA LIMITED**")
         st.caption("📅 May 2023 - Feb 2026 (2 yrs 10 mos) | Full-time | On-site (Nairobi County, Kenya)")
         st.write("""
-        COSEKE enabled me to update my knowledge in document digitization procedures, data cleaning, and indexing. 
-        I participated in digitizing records for various organizations around Nairobi CBD, including:
+       My time in COSEKE enhanced my knowledge in document digitization procedures, data cleaning, and indexing while participating in large-scale digitization projects for organizations across Nairobi, including the Kenya Police Office (Sky Park Westlands), Stima Sacco Plaza, and Trade Development Bank Tower (TDB Tower). including:
         - **Kenya Police Office** (Sky Park Westlands)
-        - **Stima Sacco Plaza**
+        - **Stima Sacco Plaza** (Ngara)
         - **Trade Development Bank Tower** (TDB Tower Lenana Road)
+        - ** ICT Authority**(GPO TelPosta Towers)
+        - ** KPLC (Stima Plaza in Nairobi CBD)
         """)
         
         st.write("**Key Contributions:**")
