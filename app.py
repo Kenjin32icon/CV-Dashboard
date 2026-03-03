@@ -94,7 +94,7 @@ elif selection == "Professional Experience":
         st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders.")
         st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows.")
         
-        st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`")
+        st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Indexing`, `Digitization`")
 
     # --- CHURCH SECTION ---
     with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True):
