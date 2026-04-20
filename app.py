@@ -87,7 +87,8 @@ elif selection == "Projects & Experience":
     st.header("💼 Professional Experience & Systems Built")
     
     # NEW FLAGSHIP PROJECT
-    st.subheader("🚀 TUK-Map AI: Intelligent Graduate to Job Mapping System")
+    with st.subheader("🚀 TUK-Map AI: Intelligent Graduate to Job Mapping System", expanded=True):
+        st.markdown("### **Technical University of Kenya**")
     st.caption("Lead Architect & Developer | Technical University of Kenya")
     st.write("""
     **Overview:** Designed and engineered an enterprise-grade Software as a Service (SaaS) platform to solve graduate unemployment by translating university coursework into marketable tech services.
