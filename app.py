@@ -99,23 +99,50 @@ elif selection == "Projects & Experience":
     
     st.divider()
 
-    st.subheader("📊 Data Entry Clerk | COSEKE KENYA LIMITED")
-    st.caption("May 2023 – February 2025 | Nairobi County, Kenya")
-    st.write("""
-    - Participated in large-scale document digitization projects for high-profile clients including the Kenya Police Office, TDB Tower, and the ICT Authority.
-    - **Data Optimization:** Revamped entry procedures to increase accuracy and reduce reporting turnaround time.
-    - **Dataset Validation:** Extracted and validated large-scale datasets to ensure compliance with quality assurance protocols.
-    """)
-    
+    # --- COSEKE SECTION ---
+    with st.expander("Data Entry Clerk | COSEKE KENYA LIMITED", expanded=True):
+        st.markdown("### **COSEKE KENYA LIMITED**")
+        st.caption("📅 May 2023 - Feb 2026 (2 yrs 10 mos) | Full-time | On-site (Nairobi County, Kenya)")
+        st.write("""
+       My time in COSEKE enhanced my knowledge in document digitization procedures, data cleaning, and indexing while participating in large-scale digitization projects for organizations across Nairobi, including the Kenya Police Office (Sky Park Westlands), Stima Sacco Plaza, and Trade Development Bank Tower (TDB Tower). including:
+        - **Kenya Police Office** (Sky Park Westlands)
+        - **Stima Sacco Plaza** (Ngara)
+        - **Trade Development Bank Tower** (TDB Tower Lenana Road)
+        - **ICT Authority** (GPO TelPosta Towers)
+        - **KPLC** (Stima Plaza in Nairobi CBD)
+        """)
+        
+        st.write("**Key Contributions:**")
+        st.write("- **Data Optimization:** Revamped entry procedures to increase accuracy and significantly reduce reporting turnaround time.")
+        st.write("- **Dataset Validation:** Extracted and validated large-scale datasets to ensure high-fidelity information for stakeholders.")
+        st.write("- **Efficiency Automation:** Automated routine data tasks, resulting in measurable improvements in daily operational workflows.")
+        
+        st.markdown("**Skills:** `Data Entry`, `Data Cleaning`, `Digitization`")
+
     st.divider()
-    
-    st.subheader("🏛️ Research & Metadata Mapping Project")
-    st.caption("Collaboration: TU-K & Potsdam University (Germany) | Nov 2025")
-    st.write("""
-    - **Process Design:** Implemented a cost-effective digitization procedure using open-source tools including Hugin Panorama and QGIS.
-    - **Metadata Architecture:** Collected multi-stage metadata using Dublin Core elements to create Submission Information Packages (SIP).
-    - **Standard Compliance:** Adhered strictly to the Open Archival Information System (OAIS) framework.
-    """)
+
+    # --- CHURCH SECTION ---
+    with st.expander("Media Team Member | ACK St. Peters Kahawa Sukari Church", expanded=True):
+        st.markdown("### **Media Team Apprenticeship**")
+        st.caption("📅 Mar 2025 - Present (1 yr) | Nairobi County, Kenya")
+        st.write("I participate in my church Media Team, which has evolved the following skills:")
+        
+        st.write("- **Live Production:** Managing live social media broadcasts for Sunday youth services.")
+        st.write("- **Visual Presentation:** Designing and executing presentation slides to enhance delivery and engagement.")
+        st.write("- **Technical Operation:** Serving as a camera operator for high-quality visual capture of events.")
+        
+        st.markdown("**Skills:** `Live Video Streaming`, `Video Camera Operation`, `Sound Board Operation`")
+
+elif selection == "Key Projects":
+    st.header("🚀 Key Projects & Research")
+    with st.container(border=True):
+        st.subheader("🗺️ Digitization of Historical Maps")
+        st.caption("TU-K & FH Potsdam University | Presented Nov 2025")
+        st.info("🏛️ Presented at the Kenyan National Museum")
+        st.write("""
+        - **Process Design:** Implemented a cost-effective digitization procedure using QGIS and Hugin Panorama.
+        - **Standard Compliance:** Adhered to the Open Archival Information System (OAIS) framework.
+        """)
 
 elif selection == "Education & Certs":
     st.header("🎓 Education & Certifications")
