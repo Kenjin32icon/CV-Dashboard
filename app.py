@@ -97,6 +97,7 @@ elif selection == "Projects & Experience":
     - **Security:** Engineered strict Role-Based Access Control (RBAC) via Firebase, featuring a Developer Super-Panel for live privilege mutation and system auditing.
     - **Data Pipeline:** Developed an event-driven background worker that pushes AI-generated student readiness KPIs directly to a live Google Sheet using the Google Cloud API for quantitative research.
     """)
+    st.markdown("[🔗 **Visit Live System** →](https://tuk-mapping-system-frontend.vercel.app)", unsafe_allow_html=True)
     
     st.divider()
 
