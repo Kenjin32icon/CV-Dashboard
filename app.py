@@ -79,13 +79,13 @@ if selection == "Dashboard Home":
     st.subheader("Career Highlights At a Glance")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.markdown('<div class="metric-card"><h2>1+</h2><p>Enterprise AI Systems Built</p></div>', unsafe_allow_html=True)
+        st.metric(label="🏗️ Enterprise AI Systems Built", value="1+", delta="+1 this year")
     with col2:
-        st.markdown('<div class="metric-card"><h2>1.8</h2><p>Years Digitization Exp.</p></div>', unsafe_allow_html=True)
+        st.metric(label="⏱️ Years Digitization Exp.", value="1.8", delta="+0.5 recently")
     with col3:
-        st.markdown('<div class="metric-card"><h2>3+</h2><p>IBM / Industry Certs</p></div>', unsafe_allow_html=True)
+        st.metric(label="📜 IBM / Industry Certs", value="3+", delta="+2 in 2024")
     with col4:
-        st.markdown('<div class="metric-card"><h2>10k+</h2><p>Records Digitized & Cleaned</p></div>', unsafe_allow_html=True)
+        st.metric(label="📊 Records Digitized & Cleaned", value="10k+", delta="+5k this quarter")
 
     st.divider()
 
