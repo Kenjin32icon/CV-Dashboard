@@ -127,7 +127,7 @@ elif selection == "Projects & Experience":
         col1, col2 = st.columns([2, 1])
         with col1:
             st.markdown("**COSEKE KENYA LIMITED**")
-            st.caption("📅 May 2023 - Feb 2026 (2 yrs 10 mos) | Full-time | Nairobi County, Kenya")
+            st.caption("📅 May 2023 - Feb 2025 (1 yrs 10 mos) | Full-time | Nairobi County, Kenya")
         with col2:
             st.metric("Projects", "5+")
         
