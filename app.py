@@ -4,9 +4,10 @@ import pandas as pd
 # --- PAGE CONFIGURATION ---
 st.set_page_config(page_title="Lewis Kariuki | AI & Data Portfolio", page_icon="📊", layout="wide")
 
-# --- CUSTOM CSS FOR FLOATING BUTTON & STYLING ---
+# --- CUSTOM CSS FOR FLOATING BUTTON, STYLING & DARK MODE ---
 st.markdown("""
     <style>
+    /* Floating WhatsApp Button */
     .float-btn {
         position: fixed;
         bottom: 20px;
@@ -28,10 +29,14 @@ st.markdown("""
     .float-btn:hover {
         transform: scale(1.1);
     }
+    
+    /* Sidebar Image Styling */
     [data-testid="stSidebar"] img {
         border-radius: 50%;
         margin-bottom: 20px;
     }
+    
+    /* DEFAULT LIGHT MODE: Tech Stack & Achievements */
     .tech-stack {
         background-color: #f0f7ff;
         padding: 15px;
@@ -46,6 +51,20 @@ st.markdown("""
         border-radius: 5px;
         border-left: 4px solid #198754;
         margin-bottom: 10px;
+    }
+
+    /* DARK MODE OVERRIDES */
+    @media (prefers-color-scheme: dark) {
+        .tech-stack {
+            background-color: #0f172a; /* Deep dark blue */
+            border-left: 4px solid #3b82f6; /* Brighter blue border for contrast */
+            color: #f8fafc; /* Crisp white text */
+        }
+        .achievement-highlight {
+            background-color: #064e3b; /* Deep dark green */
+            border-left: 4px solid #34d399; /* Brighter green border for contrast */
+            color: #f8fafc; /* Crisp white text */
+        }
     }
     </style>
     """, unsafe_allow_html=True)
