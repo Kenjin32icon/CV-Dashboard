@@ -144,20 +144,33 @@ elif selection == "Experience & Projects":
         
         st.link_button("🔗 Visit Live System", "https://tuk-mapping-system-frontend.vercel.app", use_container_width=False)
 
-    with tab2:
-        st.subheader("Data Analyst & Digitisation Specialist")
-        st.caption("May 2023 - Feb 2025 | COSEKE KENYA LIMITED | Nairobi, Kenya")
-        st.write("Spearheaded data extraction and system digitisation projects for major enterprise clients, including the Kenya Police Office, KPLC, and the ICT Authority.")
+    with tab 2("💻 Data Entry Clerk | COSEKE KENYA LIMITED", expanded=True):
+   # --- COSEKE SECTION ---
+
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            st.markdown("**COSEKE KENYA LIMITED**")
+            st.caption("📅 May 2023 - Feb 2025 (1 yrs 10 mos) | Full-time | Nairobi County, Kenya")
+        with col2:
+            st.metric("Projects", "5+")
+        
+        st.write("**Organizations Served:**")
+        st.write("🏢 Kenya Police Office (Sky Park Westlands) • Stima Sacco Plaza (Ngara) • Trade Development Bank Tower (TDB Tower)")
+        st.write("🏢 ICT Authority (GPO TelPosta Towers) • KPLC (Stima Plaza, Nairobi CBD)")
         
         st.markdown("---")
+        st.write("**Key Contributions:**")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown("✅ **Process Optimisation**<br>Redesigned data entry workflows, significantly reducing the time it takes to generate reports.", unsafe_allow_html=True)
+            st.markdown("✅ **Data Optimization**<br>Revamped entry procedures for higher accuracy & faster turnaround", unsafe_allow_html=True)
         with col2:
-            st.markdown("✅ **Data Quality Assurance**<br>Extracted and cleaned large-scale datasets, ensuring corporate clients had 100% accurate information.", unsafe_allow_html=True)
+            st.markdown("✅ **Dataset Validation**<br>Extracted & validated large-scale datasets for stakeholders", unsafe_allow_html=True)
         with col3:
-            st.markdown("✅ **Workflow Automation**<br>Automated repetitive daily tasks to boost team efficiency and reduce human error.", unsafe_allow_html=True)
+            st.markdown("✅ **Efficiency Automation**<br>Automated routine tasks for operational improvements", unsafe_allow_html=True)
+        
+        st.markdown("**Skills:** `Data Entry` • `Data Cleaning` • `Digitization` • `Data Validation`")
 
+    st.divider()
     with tab3:
         st.subheader("Digitisation of Historical Maps")
         st.caption("Research Project | Presented at the Kenyan National Museum (Nov 2025)")
