@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(page_title="Lewis Kariuki | AI & Data Portfolio", page_icon="📊", layout="wide")
@@ -151,11 +150,13 @@ elif selection == "Experience & Projects":
         
         st.markdown("---")
         col1, col2, col3 = st.columns(3)
-with col1:
+        with col1:
             st.markdown("**COSEKE KENYA LIMITED**")
             st.caption("📅 May 2023 - Feb 2025 (1 yrs 10 mos) | Full-time | Nairobi County, Kenya")
         with col2:
             st.metric("Projects", "5+")
+        with col3:
+            st.write("")
         
         st.write("**Organizations Served:**")
         st.write("🏢 Kenya Police Office (Sky Park Westlands) • Stima Sacco Plaza (Ngara) • Trade Development Bank Tower (TDB Tower)")
