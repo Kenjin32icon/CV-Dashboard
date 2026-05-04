@@ -146,7 +146,7 @@ elif selection == "Experience & Projects":
     with tab2:
         st.subheader("💻 Data Entry Clerk | COSEKE KENYA LIMITED")
         st.caption("May 2023 - Feb 2025 | COSEKE KENYA LIMITED | Nairobi, Kenya")
-        st.write("Spearheaded data extraction and system digitisation projects for major enterprise clients, including the Kenya Police Office, KPLC, and the ICT Authority.")
+        st.write("As a data clerk in COSEKE I managed to learn and master data extraction and system digitisation projects for major enterprise clients, including the Kenya Police Office, KPLC, and the ICT Authority.")
         
         st.markdown("---")
         col1, col2, col3 = st.columns(3)
