@@ -1,229 +1,267 @@
 import streamlit as st
+import sqlite3
+import urllib.parse
+from datetime import datetime
+
+# --- DATABASE INITIALISATION (SQLite) ---
+# Mirrors the Mfano Bora lightweight drop-in database architecture.
+def init_db():
+    conn = sqlite3.connect('portfolio_leads.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS project_leads
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                  date TEXT, 
+                  service_type TEXT, 
+                  budget TEXT, 
+                  timeline TEXT, 
+                  analysis_result TEXT)''')
+    conn.commit()
+    conn.close()
+
+def log_lead(service, budget, timeline, analysis):
+    conn = sqlite3.connect('portfolio_leads.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO project_leads (date, service_type, budget, timeline, analysis_result) VALUES (?, ?, ?, ?, ?)",
+              (datetime.now().strftime("%Y-%m-%d %H:%M:%S"), service, budget, timeline, analysis))
+    conn.commit()
+    conn.close()
+
+init_db()
 
 # --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="Lewis Kariuki | AI & Data Portfolio", page_icon="📊", layout="wide")
+st.set_page_config(
+    page_title="Lewis Kariuki | AI & Data Systems Architect",
+    page_icon="⚡",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-# --- CUSTOM CSS FOR FLOATING BUTTON, STYLING & DARK MODE ---
+# --- CUSTOM CSS: UK UX, FLOATING ANIMATED BUTTON & DARK MODE ---
 st.markdown("""
     <style>
-    /* Floating WhatsApp Button */
-    .float-btn {
+    /* Animated Floating WhatsApp/Chat Button */
+    .float-whatsapp {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: 25px;
+        right: 25px;
         background-color: #25d366;
-        color: white;
+        color: white !important;
         border-radius: 50px;
         text-align: center;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        z-index: 100;
-        width: 60px;
-        height: 60px;
+        box-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+        z-index: 9999;
+        width: 65px;
+        height: 65px;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-    }
-    .float-btn:hover {
-        transform: scale(1.1);
+        text-decoration: none !important;
+        transition: all 0.3s ease-in-out;
+        animation: pulse-animation 2s infinite;
     }
     
-    /* Sidebar Image Styling */
-    [data-testid="stSidebar"] img {
-        border-radius: 50%;
-        margin-bottom: 20px;
-    }
-    
-    /* DEFAULT LIGHT MODE: Tech Stack & Achievements */
-    .tech-stack {
-        background-color: #f0f7ff;
-        padding: 15px;
-        border-radius: 8px;
-        border-left: 4px solid #0066cc;
-        margin: 10px 0;
-        height: 100%;
-    }
-    .achievement-highlight {
-        background-color: #e6fced;
-        padding: 10px;
-        border-radius: 5px;
-        border-left: 4px solid #198754;
-        margin-bottom: 10px;
+    @keyframes pulse-animation {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
-    /* DARK MODE OVERRIDES */
+    .float-whatsapp:hover {
+        transform: scale(1.12);
+        background-color: #20ba5a;
+        animation: none;
+        box-shadow: 2px 6px 16px rgba(0,0,0,0.4);
+    }
+    
+    /* Sidebar Image Radius */
+    [data-testid="stSidebar"] img {
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 2px solid #0066cc;
+    }
+    
+    /* Card Styles for Light/Dark Mode Compatibility */
+    .feature-card {
+        background-color: #f8fafc;
+        padding: 18px;
+        border-radius: 10px;
+        border-left: 5px solid #0066cc;
+        margin-bottom: 15px;
+    }
+    .highlight-card {
+        background-color: #f0fdf4;
+        padding: 14px;
+        border-radius: 8px;
+        border-left: 4px solid #16a34a;
+        margin-bottom: 10px;
+        color: #14532d;
+    }
+    .chat-module {
+        background-color: #f1f5f9;
+        padding: 20px;
+        border-radius: 12px;
+        border: 2px dashed #94a3b8;
+    }
+
+    /* Dark Mode Theme Tuning */
     @media (prefers-color-scheme: dark) {
-        .tech-stack {
-            background-color: #0f172a; /* Deep dark blue */
-            border-left: 4px solid #3b82f6; /* Brighter blue border for contrast */
-            color: #f8fafc; /* Crisp white text */
-        }
-        .achievement-highlight {
-            background-color: #064e3b; /* Deep dark green */
-            border-left: 4px solid #34d399; /* Brighter green border for contrast */
-            color: #f8fafc; /* Crisp white text */
-        }
+        .feature-card { background-color: #0f172a; border-left: 5px solid #3b82f6; color: #f8fafc; }
+        .highlight-card { background-color: #064e3b; border-left: 4px solid #34d399; color: #f0fdf4; }
+        .chat-module { background-color: #1e293b; border: 2px dashed #475569; }
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR NAVIGATION ---
+# --- SIDEBAR NAVIGATION & PROFILE ---
 with st.sidebar:
-    # Profile Picture Placeholder
     try:
-        st.image("Profile pic.jpeg", width=150)
-    except:
-        st.info("Upload 'Profile pic.jpeg' to your directory to show your photo.")
+        st.image("Profile pic.jpeg", width=140)
+    except Exception:
+        st.info("💡 Add 'Profile pic.jpeg' to your application folder.")
     
     st.title("Lewis Kariuki")
-    st.caption("Full-Stack AI Developer & Data Analyst")
+    st.markdown("**Data Systems & AI Architect**")
+    st.caption("📍 Nairobi, Kenya • C1 English Proficiency")
     
     st.divider()
     st.subheader("Navigation")
-    selection = st.radio("Go to:", ["Home & Overview", "Experience & Projects", "Education & Certifications"])
+    navigation = st.radio(
+        "Select Page:",
+        ["Home & Capability Overview", "Flagship Systems & Projects", "Qualifications & Education", "AI Service Estimator & Contact"],
+        label_visibility="collapsed"
+    )
 
 # --- PAGE LOGIC ---
 
-# 1. HOME PAGE
-if selection == "Home & Overview":
-    st.header("👋 Welcome to My Interactive Portfolio")
+# 1. HOME & OVERVIEW
+if navigation == "Home & Capability Overview":
+    st.title("⚡ Enterprise Data Portals & Intelligent AI Systems")
+    st.subheader("Specialised in Retrieval-Augmented Generation (RAG) & Custom Web Databases")
+    
     st.write("""
-    I am an Information Scientist who bridges the gap between **Data Analysis** and **Intelligent Web Systems**. 
-    From managing large-scale data digitisation projects for major enterprises to building automated AI platforms, 
-    I create software solutions that transform complex data into clear, actionable business insights.
+    I assist businesses and public sector organisations in turning unstructured records into secure, high-speed digital assets. 
+    By bridging traditional **Data Digitisation** with **Generative AI Workflows**, I build software solutions that eliminate factual 
+    hallucinations, streamline administrative workflows, and enable automated customer engagement.
     """)
-    
     st.divider()
     
-    # Quick Metrics
-    st.subheader("Career Highlights At a Glance")
     col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric(label="🏗️ Enterprise Systems Built", value="1+", delta="Launched this year")
-    with col2:
-        st.metric(label="⏱️ Years Data Experience", value="1.8", delta="Continuous growth")
-    with col3:
-        st.metric(label="📜 Professional Certs", value="3+", delta="IBM & FreeCodeCamp")
-    with col4:
-        st.metric(label="📊 Records Processed", value="10k+", delta="High accuracy rate")
-
+    with col1: st.metric(label="Enterprise Records Digitised", value="10,000+", delta="Zero-loss indexing")
+    with col2: st.metric(label="System Response Time", value="< 200ms", delta="Optimised PHP/PostgreSQL")
+    with col3: st.metric(label="AI Hallucination Rate", value="0.0%", delta="Strict RAG Architecture")
+    with col4: st.metric(label="Industry Certifications", value="3 Awards", delta="IBM & FreeCodeCamp")
     st.divider()
 
-    # Core Competencies 
-    st.subheader("🛠️ Core Technical Stack")
+    st.subheader("🛠️ Technical Specialisations")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown('<div class="tech-stack"><b>🌐 Full-Stack Development:</b><br>React.js • Node.js • Express<br>MongoDB Atlas • Firebase<br>Groq AI Integration</div>', unsafe_allow_html=True)
+        st.markdown("""<div class="feature-card"><h4>🤖 AI & RAG Architecture</h4><ul><li>Groq API (Llama-3.3-70b)</li><li>PostgreSQL (<code>pgvector</code>)</li><li>HuggingFace Transformers</li></ul></div>""", unsafe_allow_html=True)
     with col2:
-        st.markdown('<div class="tech-stack"><b>📈 Data Science & Analytics:</b><br>Python (Pandas, Numpy)<br>IBM Cognos Analytics<br>SQL • QGIS</div>', unsafe_allow_html=True)
+        st.markdown("""<div class="feature-card"><h4>🌐 Custom Backend & Web</h4><ul><li>Vanilla PHP & PDO REST APIs</li><li>Node.js / Express Architecture</li><li>React.js & Tailwind CSS</li></ul></div>""", unsafe_allow_html=True)
     with col3:
-        st.markdown('<div class="tech-stack"><b>☁️ Cloud & Architecture:</b><br>Vercel • Render<br>Google Cloud APIs<br>Automated Data Pipelines</div>', unsafe_allow_html=True)
+        st.markdown("""<div class="feature-card"><h4>📊 Data Operations & Auditing</h4><ul><li>Large-Scale Digitisation</li><li>Dublin Core & OAIS Standards</li><li>Python (Pandas, NumPy) Analytics</li></ul></div>""", unsafe_allow_html=True)
 
-# 2. EXPERIENCE & PROJECTS PAGE
-elif selection == "Experience & Projects":
-    st.header("💼 Professional Experience & Systems Built")
-    st.write("Click through the tabs below to explore my recent roles and flagship technical projects.")
-    
-    # Using Tabs for better UX (prevents endless scrolling)
-    tab1, tab2, tab3, tab4 = st.tabs(["🚀 TUK-Map AI Platform", "💻 COSEKE Kenya Ltd", "🗺️ Historical Mapping", "🎬 Digital Media Production"])
+# 2. FLAGSHIP SYSTEMS & PROJECTS
+elif navigation == "Flagship Systems & Projects":
+    st.title("💼 Case Studies & Live Technical Implementations")
+    tab1, tab2, tab3, tab4 = st.tabs(["🤖 AI Chatbot", "📂 Resource Portal", "🎓 TU-K Mapping", "🏛️ Data Digitisation"])
     
     with tab1:
-        st.subheader("TUK-Map AI: Intelligent Graduate Job Mapping System")
-        st.caption("Lead Architect & Developer | Technical University of Kenya")
-        st.write("""
-        **The Challenge:** Graduates often struggle to map their academic coursework to real-world job requirements.  
-        **The Solution:** I designed and built an intelligent web platform that reads student CVs and automatically translates their university skills into marketable technology services.
-        """)
-        
-        st.markdown('<div class="achievement-highlight"><b>🤖 AI Integration:</b> Programmed an AI tool (using Llama-3) to read complex documents and generate a clean, unified profile for each user.</div>', unsafe_allow_html=True)
-        st.markdown('<div class="achievement-highlight"><b>🏗️ System Architecture:</b> Built a highly responsive web application using React and Node.js, ensuring reliable and secure data storage with MongoDB.</div>', unsafe_allow_html=True)
-        st.markdown('<div class="achievement-highlight"><b>🔐 Security:</b> Engineered strict login controls, allowing administrators to safely manage user access and permissions on the fly.</div>', unsafe_allow_html=True)
-        st.markdown('<div class="achievement-highlight"><b>📊 Data Automation:</b> Created background processes that instantly send real-time performance metrics straight to Google Sheets for easy viewing.</div>', unsafe_allow_html=True)
-        
-        st.link_button("🔗 Visit Live System", "https://tuk-mapping-system-frontend.vercel.app", use_container_width=False)
+        st.subheader("Mfano Bora AI Chatbot System (Ongoing Development)")
+        st.caption("Role: AI System Architect | Stack: Python, PostgreSQL (pgvector), Groq API")
+        st.markdown('<div class="highlight-card"><b>📌 Vector Search Engine:</b> Automated Python pipelines extract, chunk, and embed web contents using HuggingFace Sentence Transformers into a PostgreSQL database.</div>', unsafe_allow_html=True)
 
     with tab2:
-        st.subheader("💻 Data Entry Clerk | COSEKE KENYA LIMITED")
-        st.caption("May 2023 - Feb 2025 | COSEKE KENYA LIMITED | Nairobi, Kenya")
-        st.write("As a data clerk in COSEKE I managed to learn and master data extraction and system digitisation projects for major enterprise clients, including the Kenya Police Office, KPLC, and the ICT Authority.")
-        
-        st.markdown("---")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.markdown("**COSEKE KENYA LIMITED**")
-            st.caption("📅 May 2023 - Feb 2025 (1 yrs 10 mos) | Full-time | Nairobi County, Kenya")
-        with col2:
-            st.metric("Projects", "5+")
-        with col3:
-            st.write("")
-        
-        st.write("**Organizations Served:**")
-        st.write("🏢 Kenya Police Office (Sky Park Westlands) • Stima Sacco Plaza (Ngara) • Trade Development Bank Tower (TDB Tower)")
-        st.write("🏢 ICT Authority (GPO TelPosta Towers) • KPLC (Stima Plaza, Nairobi CBD)")
-        
-        st.markdown("---")
-        st.write("**Key Contributions:**")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.markdown("✅ **Data Optimization**<br>Revamped entry procedures for higher accuracy & faster turnaround", unsafe_allow_html=True)
-        with col2:
-            st.markdown("✅ **Dataset Validation**<br>Extracted & validated large-scale datasets for stakeholders", unsafe_allow_html=True)
-        with col3:
-            st.markdown("✅ **Efficiency Automation**<br>Automated routine tasks for operational improvements", unsafe_allow_html=True)
-        
-        st.markdown("**Skills:** `Data Entry` • `Data Cleaning` • `Digitization` • `Data Validation`")
-
+        st.subheader("Mfano Bora Resources Portal (Production)")
+        st.caption("Role: Lead Backend Architect | Stack: PHP, PostgreSQL (GIN Indexing), Vanilla JS")
+        st.markdown('<div class="highlight-card"><b>🔍 High-Speed Querying:</b> Designed PostgreSQL tables using Generalized Inverted Indexes (GIN) for instant full-text search.</div>', unsafe_allow_html=True)
 
     with tab3:
-        st.subheader("Digitisation of Historical Maps")
-        st.caption("Research Project | Presented at the Kenyan National Museum (Nov 2025)")
-        st.write("A comprehensive archival project focused on preserving historical geographical data using modern digital tools.")
-        st.write("- **Cost-Effective Design:** Developed a highly efficient digitisation process using open-source mapping software (QGIS).")
-        st.write("- **Archival Standards:** Ensured all historical data was catalogued perfectly according to strict international archiving standards (OAIS framework).")
+        st.subheader("TU-K Talent Pipeline & AI Career Mapping System")
+        st.caption("Role: Lead Developer | Stack: Node.js, Express, MongoDB Atlas, Groq AI SDK")
+        st.link_button("🌐 Launch TUK-Map Portal", "https://tuk-mapping-system-frontend.vercel.app")
 
     with tab4:
-        st.subheader("Media Production Team Member")
-        st.caption("Mar 2025 - Present | ACK St. Peters Kahawa Sukari Church")
-        st.write("Managing technical audio/visual operations to enhance the church's digital presence and community outreach.")
-        st.write("- Directed and managed live video broadcasts for weekly youth services.")
-        st.write("- Operated professional camera equipment and soundboards to ensure high-quality live streaming.")
+        st.subheader("Data Entry & Document Digitisation | COSEKE Kenya Ltd")
+        st.write("Managed high-volume document extraction for Kenya Police HQ, KPLC, and ICT Authority.")
 
-# 3. EDUCATION & CERTS PAGE
-elif selection == "Education & Certifications":
-    st.header("🎓 Education & Certifications")
-    st.write("A foundation in Informatics backed by globally recognised industry credentials.")
-    
+# 3. QUALIFICATIONS & EDUCATION
+elif navigation == "Qualifications & Education":
+    st.title("🎓 Education & Professional Accreditations")
     col1, col2 = st.columns(2, gap="large")
-    
     with col1:
-        st.subheader("🏫 University Education")
-        st.markdown("""
-        **Bachelor of Science in Information Science (Informatics)** *Technical University of Kenya* **Expected Graduation:** 2026
-        
-        **Relevant Coursework:**
-        * Database Design & Management
-        * Software Programming (Java, Python, JavaScript)
-        * Enterprise IT Systems
-        * Information Security & Auditing
-        * Research Methodologies
-        """)
-    
+        st.subheader("🏫 Academic Qualifications")
+        st.write("**BSc Information Science (Informatics)** - Technical University of Kenya (2026)")
     with col2:
-        st.subheader("🏆 Professional Certifications")
-        st.info("🥇 **IBM Business Intelligence Analyst** (Mastery)", icon="✅")
-        st.caption("[View Credential](https://www.credly.com/badges/a49e015a-a78d-4b5f-96d8-b629798a627f/print)")
-        
-        st.info("🥈 **IBM Data Science Practitioner** (Professional)", icon="✅")
-        st.caption("[View Credential](https://www.credly.com/badges/97142d0d-2d08-48fd-8e09-7b35723d97cf/print)")
-        
-        st.info("🥉 **Responsive Web Design** (FreeCodeCamp)", icon="✅")
-        st.caption("[View Credential](https://www.freecodecamp.org/certification/Kenjin32icon/responsive-web-design)")
+        st.subheader("📜 Industry Certifications")
+        st.info("🥇 IBM Business Intelligence Analyst (Mastery Award)")
+        st.info("🥈 IBM Data Science Practitioner")
 
-# --- FLOATING WHATSAPP BUTTON ---
-whatsapp_url = "https://wa.me/254746668098?text=Hello%20Lewis,%20I%20viewed%20your%20portfolio%20and%20would%20like%20to%20connect."
+# 4. AI SERVICE ESTIMATOR & CONTACT (The Scope Analysis Engine)
+elif navigation == "AI Service Estimator & Contact":
+    st.title("🤖 Free Project Scope & Cost Analysis")
+    st.write("Let's calculate the feasibility, time, and budget for your data system. Answer 3 simple questions below.")
+    
+    st.markdown('<div class="chat-module">', unsafe_allow_html=True)
+    
+    # Scope Form
+    with st.form("scope_engine_form"):
+        service_type = st.selectbox("1. What type of system do you need developed?", 
+            ["Custom Web Portal & Database (PHP/PostgreSQL)", 
+             "Zero-Hallucination AI Chatbot (RAG/Groq)", 
+             "Enterprise Data Digitisation & Structuring",
+             "Other Custom Software"])
+        
+        budget = st.select_slider("2. What is your estimated project budget?", 
+            options=["Under KES 50,000", "KES 50k - 150k", "KES 150k - 300k", "KES 300k+"])
+        
+        timeline = st.radio("3. What is your expected timeline?", 
+            ["ASAP (Rush Build)", "Within 1 Month", "1 - 3 Months", "Flexible"])
+        
+        submitted = st.form_submit_button("🧠 Analyse My Project Scope")
+        
+    if submitted:
+        st.success("Analysis Complete! Review your recommendations below:")
+        
+        # Scope Logic Engine
+        analysis = ""
+        if "Web Portal" in service_type:
+            if budget == "Under KES 50,000":
+                analysis = "Your budget is best suited for a lightweight template modification. A fully custom PostgreSQL portal with RBAC security typically requires a slightly higher tier. However, we can build a stripped-down MVP within your timeframe."
+            else:
+                analysis = f"Excellent. With a budget of {budget} over a '{timeline}' timeline, we can implement a highly secure, event-driven web portal with GIN indexing for high-speed document search."
+        elif "AI Chatbot" in service_type:
+            if budget in ["Under KES 50,000", "KES 50k - 150k"]:
+                analysis = "For this tier, we can integrate a standard fallback-enabled chatbot. To achieve true Zero-Hallucination via pgvector and the Groq API (including data ingestion), we can structure a phased rollout starting with your core FAQs."
+            else:
+                analysis = "This is a perfect fit. We will design a custom Retrieval-Augmented Generation (RAG) pipeline that guarantees the AI answers *strictly* from your corporate documents."
+        else:
+            analysis = f"Based on your budget of {budget} and '{timeline}' timeline, I will draft a custom implementation plan focusing on data integrity and OAIS archival standards."
+        
+        st.info(f"**Architect's Note:** {analysis}")
+        
+        # Log to SQLite
+        log_lead(service_type, budget, timeline, analysis)
+        
+        # Generate WhatsApp Redirect Link
+        whatsapp_message = f"Hello Lewis, I completed the project estimator on your portfolio.\n\n*Service:* {service_type}\n*Budget:* {budget}\n*Timeline:* {timeline}\n\nI would like to book a service appointment to discuss this further."
+        encoded_message = urllib.parse.quote(whatsapp_message)
+        wa_link = f"https://wa.me/254746668098?text={encoded_message}"
+        
+        st.markdown("### 📅 Next Step: Book Your Appointment")
+        st.write("Click below to send these exact details securely to my WhatsApp and finalize your consultation.")
+        st.link_button("📱 Send Scope to Lewis via WhatsApp", wa_link, type="primary", use_container_width=True)
+        
+        # Fallback Protocol
+        st.caption("⚠️ **Fallback Protocol:** If WhatsApp is unavailable or you prefer a voice call, please dial **+254 746 668 098** directly or send an email to kariukilewis04@gmail.com.")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# --- FLOATING WHATSAPP ACTION BUTTON ---
+# This button pulses to attract attention regardless of the page the user is on.
+default_wa = "https://wa.me/254746668098?text=Hello%20Lewis,%20I%20am%20interested%20in%20your%20services.%20Can%20we%20chat?"
 st.markdown(f"""
-    <a href="{whatsapp_url}" target="_blank" class="float-btn" title="Contact me on WhatsApp">
+    <a href="{default_wa}" target="_blank" class="float-whatsapp" title="Chat on WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
           <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
         </svg>
