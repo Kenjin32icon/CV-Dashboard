@@ -2,9 +2,16 @@ import streamlit as st
 import sqlite3
 import urllib.parse
 from datetime import datetime
+import os
 
-# --- DATABASE INITIALISATION (SQLite) ---
-# Mirrors the Mfano Bora lightweight drop-in database architecture.
+# Try importing Groq client; handle gracefully if not installed
+try:
+    from groq import Groq
+    GROQ_AVAILABLE = True
+except ImportError:
+    GROQ_AVAILABLE = False
+
+# --- DATABASE INITIALISATION (SQLite Lead Logger) ---
 def init_db():
     conn = sqlite3.connect('portfolio_leads.db')
     c = conn.cursor()
@@ -36,10 +43,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- CUSTOM CSS: UK UX, FLOATING ANIMATED BUTTON & DARK MODE ---
+# --- CUSTOM CSS: UK UX, FLOATING ANIMATED BUTTON & STYLING ---
 st.markdown("""
     <style>
-    /* Animated Floating WhatsApp/Chat Button */
+    /* Animated Floating WhatsApp Button */
     .float-whatsapp {
         position: fixed;
         bottom: 25px;
@@ -80,34 +87,35 @@ st.markdown("""
         border: 2px solid #0066cc;
     }
     
-    /* Card Styles for Light/Dark Mode Compatibility */
+    /* Card Styles */
     .feature-card {
         background-color: #f8fafc;
-        padding: 18px;
+        padding: 20px;
         border-radius: 10px;
         border-left: 5px solid #0066cc;
         margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     .highlight-card {
         background-color: #f0fdf4;
-        padding: 14px;
+        padding: 16px;
         border-radius: 8px;
         border-left: 4px solid #16a34a;
         margin-bottom: 10px;
         color: #14532d;
     }
-    .chat-module {
-        background-color: #f1f5f9;
-        padding: 20px;
+    .psych-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        padding: 30px;
         border-radius: 12px;
-        border: 2px dashed #94a3b8;
+        color: white;
+        margin-bottom: 25px;
     }
 
-    /* Dark Mode Theme Tuning */
+    /* Dark Mode Tuning */
     @media (prefers-color-scheme: dark) {
         .feature-card { background-color: #0f172a; border-left: 5px solid #3b82f6; color: #f8fafc; }
         .highlight-card { background-color: #064e3b; border-left: 4px solid #34d399; color: #f0fdf4; }
-        .chat-module { background-color: #1e293b; border: 2px dashed #475569; }
     }
     </style>
     """, unsafe_allow_html=True)
@@ -117,7 +125,7 @@ with st.sidebar:
     try:
         st.image("Profile pic.jpeg", width=140)
     except Exception:
-        st.info("💡 Add 'Profile pic.jpeg' to your application folder.")
+        st.info("💡 Add 'Profile pic.jpeg' to your folder.")
     
     st.title("Lewis Kariuki")
     st.markdown("**Data Systems & AI Architect**")
@@ -127,141 +135,222 @@ with st.sidebar:
     st.subheader("Navigation")
     navigation = st.radio(
         "Select Page:",
-        ["Home & Capability Overview", "Flagship Systems & Projects", "Qualifications & Education", "AI Service Estimator & Contact"],
+        ["Home & Capability Overview", "AI Groq Assistant", "Flagship Systems & Projects", "Qualifications & Education", "Project Scope & Cost Analysis"],
         label_visibility="collapsed"
     )
+    
+    st.divider()
+    st.markdown("💬 **Direct Contact:**")
+    st.markdown("[📱 WhatsApp Chat](https://wa.me/254746668098?text=Hello%20Lewis,%20I%20am%20interested%20in%20your%20services.)")
 
 # --- PAGE LOGIC ---
 
-# 1. HOME & OVERVIEW
+# 1. HOME & CAPABILITY OVERVIEW (Psychologically Optimised)
 if navigation == "Home & Capability Overview":
-    st.title("⚡ Enterprise Data Portals & Intelligent AI Systems")
-    st.subheader("Specialised in Retrieval-Augmented Generation (RAG) & Custom Web Databases")
+    st.markdown("""
+        <div class="psych-banner">
+            <h1>Stop Losing Revenue to Slow Databases & Flawed AI.</h1>
+            <p style="font-size: 1.1rem; margin-top: 10px;">
+                Most business software is bloated, and most AI chatbots hallucinate wrong answers. 
+                I bridge Information Science with high-performance engineering to build <b>secure PostgreSQL web portals</b>[cite: 5, 9] 
+                and <b>Zero-Hallucination RAG AI systems</b>[cite: 5, 7] that protect your brand and automate customer conversion.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
     
-    st.write("""
-    I assist businesses and public sector organisations in turning unstructured records into secure, high-speed digital assets. 
-    By bridging traditional **Data Digitisation** with **Generative AI Workflows**, I build software solutions that eliminate factual 
-    hallucinations, streamline administrative workflows, and enable automated customer engagement.
-    """)
-    st.divider()
-    
-    col1, col2, col3, col4 = st.columns(4)
-    with col1: st.metric(label="Enterprise Records Digitised", value="10,000+", delta="Zero-loss indexing")
-    with col2: st.metric(label="System Response Time", value="< 200ms", delta="Optimised PHP/PostgreSQL")
-    with col3: st.metric(label="AI Hallucination Rate", value="0.0%", delta="Strict RAG Architecture")
-    with col4: st.metric(label="Industry Certifications", value="3 Awards", delta="IBM & FreeCodeCamp")
-    st.divider()
-
-    st.subheader("🛠️ Technical Specialisations")
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns([2, 1], gap="large")
     with col1:
-        st.markdown("""<div class="feature-card"><h4>🤖 AI & RAG Architecture</h4><ul><li>Groq API (Llama-3.3-70b)</li><li>PostgreSQL (<code>pgvector</code>)</li><li>HuggingFace Transformers</li></ul></div>""", unsafe_allow_html=True)
+        st.subheader("👋 Who I Am & What I Solve")
+        st.write("""
+        I am **Lewis Kariuki**, a Full-Stack Data Analyst and Systems Architect[cite: 5]. Having managed large-scale enterprise 
+        digitisation projects for institutions like the **Kenya Police HQ, KPLC, and the ICT Authority**[cite: 5], I understand 
+        that businesses do not just need "code"—they need reliable systems that eliminate administrative bottlenecks, secure sensitive records, 
+        and deliver lightning-fast data retrieval.
+        """)
+        
+        st.subheader("🛠️ Core Services Offered")
+        st.markdown("""
+        * **Custom Web Portals & Databases:** Lightweight, high-speed PHP/PostgreSQL applications featuring GIN indexing and Role-Based Access Control (RBAC)[cite: 5, 6, 9].
+        * **Zero-Hallucination AI Chatbots:** RAG architecture using Groq API (`llama-3.3-70b`) and `pgvector` to ensure customer queries are answered *strictly* from your corporate knowledge base[cite: 5, 7].
+        * **Enterprise Data Digitisation:** Archival structuring, cleaning, and metadata indexing following international Dublin Core and OAIS frameworks[cite: 6, 8].
+        """)
+    
     with col2:
-        st.markdown("""<div class="feature-card"><h4>🌐 Custom Backend & Web</h4><ul><li>Vanilla PHP & PDO REST APIs</li><li>Node.js / Express Architecture</li><li>React.js & Tailwind CSS</li></ul></div>""", unsafe_allow_html=True)
-    with col3:
-        st.markdown("""<div class="feature-card"><h4>📊 Data Operations & Auditing</h4><ul><li>Large-Scale Digitisation</li><li>Dublin Core & OAIS Standards</li><li>Python (Pandas, NumPy) Analytics</li></ul></div>""", unsafe_allow_html=True)
+        st.info("💡 **Ready to scale your operations?**\n\nSkip the guesswork. Calculate your exact system timeline and budget instantly using my interactive cost engine.")
+        if st.button("🚀 Calculate Project Scope & Cost", type="primary", use_container_width=True):
+            st.switch_page = True # Note: Streamlit handles radio navigation via state or user click
+            st.info("Please select 'Project Scope & Cost Analysis' from the sidebar navigation menu.")
 
-# 2. FLAGSHIP SYSTEMS & PROJECTS
+    st.divider()
+    
+    # Quick Performance Metrics
+    st.subheader("Proven Track Record At a Glance")
+    m1, m2, m3, m4 = st.columns(4)
+    with m1: st.metric(label="Records Digitised", value="10,000+", delta="Zero-loss indexing")
+    with m2: st.metric(label="Query Speed", value="< 200ms", delta="Optimised PHP/PostgreSQL")
+    with m3: st.metric(label="AI Hallucination Rate", value="0.0%", delta="Strict RAG Guardrails")
+    with m4: st.metric(label="Global Certifications", value="3 Awards", delta="IBM & FreeCodeCamp")
+
+# 2. AI GROQ ASSISTANT (Interactive Chat Module)
+elif navigation == "AI Groq Assistant":
+    st.title("🤖 Chat with Lewis's AI Assistant (Powered by Groq)")
+    st.write("""
+    This interactive module runs on the **Groq API (Llama-3.3-70b)**[cite: 7], simulating the exact Retrieval-Augmented Generation (RAG) 
+    architecture Lewis builds for enterprise clients. Ask about his technical stack, past projects at COSEKE or Mfano Bora[cite: 5], 
+    or how to commission a custom web system.
+    """)
+    
+    # API Key Input
+    groq_api_key = st.text_input("Enter your Groq API Key (or use default demo session if configured):", type="password")
+    
+    if not GROQ_AVAILABLE:
+        st.error("The `groq` Python package is not installed. Run `pip install groq` in your terminal.")
+    else:
+        # Initialize chat history
+        if "messages" not in st.session_state:
+            st.session_state.messages = [
+                {"role": "assistant", "content": "Hello! I am Lewis Kariuki's AI assistant. Ask me anything about his data systems, PHP/PostgreSQL backend work, or AI RAG chatbot projects[cite: 5]. How can I help you today?"}
+            ]
+
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+
+        if prompt := st.chat_input("Ask about Lewis's skills, pricing, or system architectures..."):
+            st.session_state.messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+
+            with st.chat_message("assistant"):
+                if not groq_api_key:
+                    response_text = "Please enter a valid Groq API key above to enable live inference, or reach out to Lewis directly via WhatsApp!"
+                    st.markdown(response_text)
+                else:
+                    try:
+                        client = Groq(api_key=groq_api_key)
+                        system_prompt = """You are Lewis Kariuki's professional AI sales assistant and technical representative. 
+                        Lewis is an Information Scientist, Full-Stack AI Developer, and Data Analyst based in Nairobi, Kenya, graduating in 2026 from the Technical University of Kenya. 
+                        He specialises in:
+                        1. Custom PHP & PostgreSQL web portals (with GIN full-text indexing).
+                        2. Zero-hallucination RAG AI chat systems using Groq API (Llama-3.3-70b) and pgvector.
+                        3. Enterprise document digitisation and metadata cataloguing (Dublin Core / OAIS standards).
+                        Keep answers concise, professional, and always encourage the user to visit the 'Project Scope & Cost Analysis' page or click the WhatsApp button to book an appointment with Lewis."""
+                        
+                        messages = [{"role": "system", "content": system_prompt}] + [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
+                        
+                        chat_completion = client.chat.completions.create(
+                            model="llama-3.3-70b-versatile",
+                            messages=messages,
+                            temperature=0.3,
+                            max_completion_tokens=500
+                        )
+                        response_text = chat_completion.choices[0].message.content
+                        st.markdown(response_text)
+                    except Exception as e:
+                        response_text = f"Error connecting to Groq API: {str(e)}"
+                        st.error(response_text)
+                
+                st.session_state.messages.append({"role": "assistant", "content": response_text})
+
+# 3. FLAGSHIP SYSTEMS & PROJECTS
 elif navigation == "Flagship Systems & Projects":
-    st.title("💼 Case Studies & Live Technical Implementations")
-    tab1, tab2, tab3, tab4 = st.tabs(["🤖 AI Chatbot", "📂 Resource Portal", "🎓 TU-K Mapping", "🏛️ Data Digitisation"])
+    st.title("💼 Enterprise Systems & Case Studies")
+    st.write("Explore production-grade architectures built for real-world enterprise operations.")
+    
+    tab1, tab2, tab3, tab4 = st.tabs(["🤖 Mfano Bora AI Chatbot", "📂 Resources Portal", "🎓 TU-K Career Mapping", "🏛️ Enterprise Digitisation"])
     
     with tab1:
-        st.subheader("Mfano Bora AI Chatbot System (Ongoing Development)")
-        st.caption("Role: AI System Architect | Stack: Python, PostgreSQL (pgvector), Groq API")
-        st.markdown('<div class="highlight-card"><b>📌 Vector Search Engine:</b> Automated Python pipelines extract, chunk, and embed web contents using HuggingFace Sentence Transformers into a PostgreSQL database.</div>', unsafe_allow_html=True)
+        st.subheader("Mfano Bora AI Chatbot System (Ongoing)")
+        st.caption("Role: AI System Architect | Stack: Python, PostgreSQL (pgvector), Groq API (Llama-3.3-70b)[cite: 5, 7]")
+        st.write("Engineered a Retrieval-Augmented Generation (RAG) pipeline to restrict the LLM to answering solely from a verified corporate knowledge base, eliminating hallucinations[cite: 5, 7].")
+        st.markdown('<div class="highlight-card"><b>📌 Vector Embedding Pipeline:</b> Python scripts clean, chunk, and embed scraped data using HuggingFace Sentence Transformers into PostgreSQL `pgvector`[cite: 5, 7].</div>', unsafe_allow_html=True)
 
     with tab2:
         st.subheader("Mfano Bora Resources Portal (Production)")
-        st.caption("Role: Lead Backend Architect | Stack: PHP, PostgreSQL (GIN Indexing), Vanilla JS")
-        st.markdown('<div class="highlight-card"><b>🔍 High-Speed Querying:</b> Designed PostgreSQL tables using Generalized Inverted Indexes (GIN) for instant full-text search.</div>', unsafe_allow_html=True)
+        st.caption("Role: Lead Backend Architect | Stack: PHP, PostgreSQL (GIN Indexing), Vanilla JS[cite: 5, 9]")
+        st.write("Refactored backend infrastructure into a lightweight, high-speed PHP and Vanilla JavaScript stack to securely manage organisational assets[cite: 5, 9].")
+        st.markdown('<div class="highlight-card"><b>🔍 High-Speed Indexing:</b> Designed normalized PostgreSQL tables featuring Generalized Inverted Indexes (GIN) for instant full-text searching[cite: 5, 9].</div>', unsafe_allow_html=True)
 
     with tab3:
-        st.subheader("TU-K Talent Pipeline & AI Career Mapping System")
-        st.caption("Role: Lead Developer | Stack: Node.js, Express, MongoDB Atlas, Groq AI SDK")
-        st.link_button("🌐 Launch TUK-Map Portal", "https://tuk-mapping-system-frontend.vercel.app")
+        st.subheader("TU-K Talent Pipeline & AI Career Mapping")
+        st.caption("Role: Lead Developer | Stack: Node.js, Express, MongoDB Atlas, Groq AI SDK[cite: 5]")
+        st.write("Engineered a web application parsing student CVs to translate academic coursework into marketable tech industry offerings[cite: 5].")
+        st.link_button("🌐 Launch Live System", "https://tuk-mapping-system-frontend.vercel.app")
 
     with tab4:
-        st.subheader("Data Entry & Document Digitisation | COSEKE Kenya Ltd")
-        st.write("Managed high-volume document extraction for Kenya Police HQ, KPLC, and ICT Authority.")
+        st.subheader("Data Entry & Digitisation | COSEKE Kenya Ltd")
+        st.caption("May 2023 – February 2025 | Nairobi, Kenya[cite: 5]")
+        st.write("Managed high-volume document extraction, cleaning, and indexing for enterprise clients including Kenya Police HQ, KPLC, and the ICT Authority[cite: 5].")
 
-# 3. QUALIFICATIONS & EDUCATION
+# 4. QUALIFICATIONS & EDUCATION
 elif navigation == "Qualifications & Education":
     st.title("🎓 Education & Professional Accreditations")
     col1, col2 = st.columns(2, gap="large")
     with col1:
         st.subheader("🏫 Academic Qualifications")
-        st.write("**BSc Information Science (Informatics)** - Technical University of Kenya (2026)")
+        st.markdown("""
+        **Bachelor of Science in Information Science (Informatics)**  
+        *Technical University of Kenya (Graduating 2026)*[cite: 5]
+        
+        **Core Focus Areas:** Database Design & Management, Enterprise IT Systems, Software Programming (Python, JavaScript, PHP), Information Security & Auditing[cite: 5].
+        """)
     with col2:
         st.subheader("📜 Industry Certifications")
-        st.info("🥇 IBM Business Intelligence Analyst (Mastery Award)")
-        st.info("🥈 IBM Data Science Practitioner")
+        st.info("🥇 **IBM Business Intelligence Analyst** (Mastery Award)")
+        st.caption("[Verify Credential](https://www.credly.com/badges/a49e015a-a78d-4b5f-96d8-b629798a627f/print)")
+        
+        st.info("🥈 **IBM Data Science Practitioner** (Professional Certificate)")
+        st.caption("[Verify Credential](https://www.credly.com/badges/97142d0d-2d08-48fd-8e09-7b35723d97cf/print)")
+        
+        st.info("🥉 **Responsive Web Design** (freeCodeCamp)")
+        st.caption("[Verify Credential](https://www.freecodecamp.org/certification/Kenjin32icon/responsive-web-design)")
 
-# 4. AI SERVICE ESTIMATOR & CONTACT (The Scope Analysis Engine)
-elif navigation == "AI Service Estimator & Contact":
-    st.title("🤖 Free Project Scope & Cost Analysis")
-    st.write("Let's calculate the feasibility, time, and budget for your data system. Answer 3 simple questions below.")
+# 5. PROJECT SCOPE & COST ANALYSIS
+elif navigation == "Project Scope & Cost Analysis":
+    st.title("🤖 Project Scope, Time & Cost Estimator")
+    st.write("Configure your requirements below. Our analysis engine will evaluate your timeline, technical scope, and provide a direct booking link.")
     
-    st.markdown('<div class="chat-module">', unsafe_allow_html=True)
-    
-    # Scope Form
     with st.form("scope_engine_form"):
-        service_type = st.selectbox("1. What type of system do you need developed?", 
-            ["Custom Web Portal & Database (PHP/PostgreSQL)", 
-             "Zero-Hallucination AI Chatbot (RAG/Groq)", 
-             "Enterprise Data Digitisation & Structuring",
-             "Other Custom Software"])
+        service_type = st.selectbox("1. Select Required Service:", [
+            "Custom Web Portal & Database (PHP/PostgreSQL)[cite: 5, 9]", 
+            "Zero-Hallucination AI Chatbot (RAG/Groq)[cite: 5, 7]", 
+            "Enterprise Data Digitisation & Structuring[cite: 5, 8]",
+            "Full-Stack Software Architecture Consultation"
+        ])
         
-        budget = st.select_slider("2. What is your estimated project budget?", 
-            options=["Under KES 50,000", "KES 50k - 150k", "KES 150k - 300k", "KES 300k+"])
+        budget = st.select_slider("2. Estimated Project Budget:", options=[
+            "Under KES 50,000", "KES 50k - 150k", "KES 150k - 300k", "KES 300k+"
+        ])
         
-        timeline = st.radio("3. What is your expected timeline?", 
-            ["ASAP (Rush Build)", "Within 1 Month", "1 - 3 Months", "Flexible"])
+        timeline = st.radio("3. Expected Timeline:", [
+            "ASAP (Rush Implementation)", "Within 1 Month", "1 - 3 Months", "Flexible / Long-term"
+        ])
         
-        submitted = st.form_submit_button("🧠 Analyse My Project Scope")
+        submitted = st.form_submit_button("🧠 Run Scope Analysis")
         
     if submitted:
-        st.success("Analysis Complete! Review your recommendations below:")
+        st.success("Analysis Complete! Review your custom recommendations below:")
         
-        # Scope Logic Engine
-        analysis = ""
-        if "Web Portal" in service_type:
-            if budget == "Under KES 50,000":
-                analysis = "Your budget is best suited for a lightweight template modification. A fully custom PostgreSQL portal with RBAC security typically requires a slightly higher tier. However, we can build a stripped-down MVP within your timeframe."
-            else:
-                analysis = f"Excellent. With a budget of {budget} over a '{timeline}' timeline, we can implement a highly secure, event-driven web portal with GIN indexing for high-speed document search."
-        elif "AI Chatbot" in service_type:
-            if budget in ["Under KES 50,000", "KES 50k - 150k"]:
-                analysis = "For this tier, we can integrate a standard fallback-enabled chatbot. To achieve true Zero-Hallucination via pgvector and the Groq API (including data ingestion), we can structure a phased rollout starting with your core FAQs."
-            else:
-                analysis = "This is a perfect fit. We will design a custom Retrieval-Augmented Generation (RAG) pipeline that guarantees the AI answers *strictly* from your corporate documents."
-        else:
-            analysis = f"Based on your budget of {budget} and '{timeline}' timeline, I will draft a custom implementation plan focusing on data integrity and OAIS archival standards."
-        
+        # Scope Analysis Logic
+        analysis = f"For a '{service_type}' with a budget of '{budget}' over a '{timeline}' timeframe, our engineering team recommends structuring the project into phased milestones focusing on secure database indexing and zero-loss data validation."
         st.info(f"**Architect's Note:** {analysis}")
         
-        # Log to SQLite
+        # Log lead in SQLite
         log_lead(service_type, budget, timeline, analysis)
         
-        # Generate WhatsApp Redirect Link
-        whatsapp_message = f"Hello Lewis, I completed the project estimator on your portfolio.\n\n*Service:* {service_type}\n*Budget:* {budget}\n*Timeline:* {timeline}\n\nI would like to book a service appointment to discuss this further."
-        encoded_message = urllib.parse.quote(whatsapp_message)
-        wa_link = f"https://wa.me/254746668098?text={encoded_message}"
+        # WhatsApp redirect payload
+        whatsapp_msg = f"Hello Lewis, I ran the scope estimator on your portfolio.\n\n*Service:* {service_type}\n*Budget:* {budget}\n*Timeline:* {timeline}\n\nI would like to book a service appointment."
+        encoded_msg = urllib.parse.quote(whatsapp_msg)
+        wa_url = f"https://wa.me/254746668098?text={encoded_msg}"
         
-        st.markdown("### 📅 Next Step: Book Your Appointment")
-        st.write("Click below to send these exact details securely to my WhatsApp and finalize your consultation.")
-        st.link_button("📱 Send Scope to Lewis via WhatsApp", wa_link, type="primary", use_container_width=True)
-        
-        # Fallback Protocol
-        st.caption("⚠️ **Fallback Protocol:** If WhatsApp is unavailable or you prefer a voice call, please dial **+254 746 668 098** directly or send an email to kariukilewis04@gmail.com.")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown("### 📅 Next Step: Book Your Consultation")
+        st.link_button("📱 Send Scope to Lewis via WhatsApp", wa_url, type="primary", use_container_width=True)
+        st.caption("⚠️ **Fallback Protocol:** If WhatsApp is unavailable, call **+254 746 668 098** or email **kariukilewis04@gmail.com**.")
 
 # --- FLOATING WHATSAPP ACTION BUTTON ---
-# This button pulses to attract attention regardless of the page the user is on.
-default_wa = "https://wa.me/254746668098?text=Hello%20Lewis,%20I%20am%20interested%20in%20your%20services.%20Can%20we%20chat?"
+default_wa_url = "https://wa.me/254746668098?text=Hello%20Lewis,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
 st.markdown(f"""
-    <a href="{default_wa}" target="_blank" class="float-whatsapp" title="Chat on WhatsApp">
+    <a href="{default_wa_url}" target="_blank" class="float-whatsapp" title="Chat on WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
           <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
         </svg>
