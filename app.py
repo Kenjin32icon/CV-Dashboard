@@ -152,8 +152,8 @@ if navigation == "Home & Capability Overview":
             <h1>Stop Losing Revenue to Slow Databases & Flawed AI.</h1>
             <p style="font-size: 1.1rem; margin-top: 10px;">
                 Most business software is bloated, and most AI chatbots hallucinate wrong answers. 
-                I bridge Information Science with high-performance engineering to build <b>secure PostgreSQL web portals</b>[cite: 5, 9] 
-                and <b>Zero-Hallucination RAG AI systems</b>[cite: 5, 7] that protect your brand and automate customer conversion.
+                I bridge Information Science with high-performance engineering to build <b>secure PostgreSQL web portals</b> 
+                and <b>Zero-Hallucination RAG AI systems</b> that protect your brand and automate customer conversion.
             </p>
         </div>
     """, unsafe_allow_html=True)
@@ -162,17 +162,17 @@ if navigation == "Home & Capability Overview":
     with col1:
         st.subheader("👋 Who I Am & What I Solve")
         st.write("""
-        I am **Lewis Kariuki**, a Full-Stack Data Analyst and Systems Architect[cite: 5]. Having managed large-scale enterprise 
-        digitisation projects for institutions like the **Kenya Police HQ, KPLC, and the ICT Authority**[cite: 5], I understand 
+        I am **Lewis Kariuki**, a Full-Stack Data Analyst and Systems Architect. Having managed large-scale enterprise 
+        digitisation projects for institutions like the **Kenya Police HQ, KPLC, and the ICT Authority**, I understand 
         that businesses do not just need "code"—they need reliable systems that eliminate administrative bottlenecks, secure sensitive records, 
         and deliver lightning-fast data retrieval.
         """)
         
         st.subheader("🛠️ Core Services Offered")
         st.markdown("""
-        * **Custom Web Portals & Databases:** Lightweight, high-speed PHP/PostgreSQL applications featuring GIN indexing and Role-Based Access Control (RBAC)[cite: 5, 6, 9].
-        * **Zero-Hallucination AI Chatbots:** RAG architecture using Groq API (`llama-3.3-70b`) and `pgvector` to ensure customer queries are answered *strictly* from your corporate knowledge base[cite: 5, 7].
-        * **Enterprise Data Digitisation:** Archival structuring, cleaning, and metadata indexing following international Dublin Core and OAIS frameworks[cite: 6, 8].
+        * **Custom Web Portals & Databases:** Lightweight, high-speed PHP/PostgreSQL applications featuring GIN indexing and Role-Based Access Control (RBAC).
+        * **Zero-Hallucination AI Chatbots:** RAG architecture using Groq API (`llama-3.3-70b`) and `pgvector` to ensure customer queries are answered *strictly* from your corporate knowledge base.
+        * **Enterprise Data Digitisation:** Archival structuring, cleaning, and metadata indexing following international Dublin Core and OAIS frameworks.
         """)
     
     with col2:
@@ -195,8 +195,8 @@ if navigation == "Home & Capability Overview":
 elif navigation == "AI Groq Assistant":
     st.title("🤖 Chat with Lewis's AI Assistant (Powered by Groq)")
     st.write("""
-    This interactive module runs on the **Groq API (Llama-3.3-70b)**[cite: 7], simulating the exact Retrieval-Augmented Generation (RAG) 
-    architecture Lewis builds for enterprise clients. Ask about his technical stack, past projects at COSEKE or Mfano Bora[cite: 5], 
+    This interactive module runs on the **Groq API (Llama-3.3-70b)**, simulating the exact Retrieval-Augmented Generation (RAG) 
+    architecture Lewis builds for enterprise clients. Ask about his technical stack, past projects at COSEKE or Mfano Bora, 
     or how to commission a custom web system.
     """)
     
@@ -209,7 +209,7 @@ elif navigation == "AI Groq Assistant":
         # Initialize chat history
         if "messages" not in st.session_state:
             st.session_state.messages = [
-                {"role": "assistant", "content": "Hello! I am Lewis Kariuki's AI assistant. Ask me anything about his data systems, PHP/PostgreSQL backend work, or AI RAG chatbot projects[cite: 5]. How can I help you today?"}
+                {"role": "assistant", "content": "Hello! I am Lewis Kariuki's AI assistant. Ask me anything about his data systems, PHP/PostgreSQL backend work, or AI RAG chatbot projects. How can I help you today?"}
             ]
 
         for message in st.session_state.messages:
@@ -261,26 +261,26 @@ elif navigation == "Flagship Systems & Projects":
     
     with tab1:
         st.subheader("Mfano Bora AI Chatbot System (Ongoing)")
-        st.caption("Role: AI System Architect | Stack: Python, PostgreSQL (pgvector), Groq API (Llama-3.3-70b)[cite: 5, 7]")
-        st.write("Engineered a Retrieval-Augmented Generation (RAG) pipeline to restrict the LLM to answering solely from a verified corporate knowledge base, eliminating hallucinations[cite: 5, 7].")
-        st.markdown('<div class="highlight-card"><b>📌 Vector Embedding Pipeline:</b> Python scripts clean, chunk, and embed scraped data using HuggingFace Sentence Transformers into PostgreSQL `pgvector`[cite: 5, 7].</div>', unsafe_allow_html=True)
+        st.caption("Role: AI System Architect | Stack: Python, PostgreSQL (pgvector), Groq API (Llama-3.3-70b)")
+        st.write("Engineered a Retrieval-Augmented Generation (RAG) pipeline to restrict the LLM to answering solely from a verified corporate knowledge base, eliminating hallucinations.")
+        st.markdown('<div class="highlight-card"><b>📌 Vector Embedding Pipeline:</b> Python scripts clean, chunk, and embed scraped data using HuggingFace Sentence Transformers into PostgreSQL `pgvector`.</div>', unsafe_allow_html=True)
 
     with tab2:
         st.subheader("Mfano Bora Resources Portal (Production)")
-        st.caption("Role: Lead Backend Architect | Stack: PHP, PostgreSQL (GIN Indexing), Vanilla JS[cite: 5, 9]")
-        st.write("Refactored backend infrastructure into a lightweight, high-speed PHP and Vanilla JavaScript stack to securely manage organisational assets[cite: 5, 9].")
-        st.markdown('<div class="highlight-card"><b>🔍 High-Speed Indexing:</b> Designed normalized PostgreSQL tables featuring Generalized Inverted Indexes (GIN) for instant full-text searching[cite: 5, 9].</div>', unsafe_allow_html=True)
+        st.caption("Role: Lead Backend Architect | Stack: PHP, PostgreSQL (GIN Indexing), Vanilla JS")
+        st.write("Refactored backend infrastructure into a lightweight, high-speed PHP and Vanilla JavaScript stack to securely manage organisational assets.")
+        st.markdown('<div class="highlight-card"><b>🔍 High-Speed Indexing:</b> Designed normalized PostgreSQL tables featuring Generalized Inverted Indexes (GIN) for instant full-text searching.</div>', unsafe_allow_html=True)
 
     with tab3:
         st.subheader("TU-K Talent Pipeline & AI Career Mapping")
-        st.caption("Role: Lead Developer | Stack: Node.js, Express, MongoDB Atlas, Groq AI SDK[cite: 5]")
-        st.write("Engineered a web application parsing student CVs to translate academic coursework into marketable tech industry offerings[cite: 5].")
+        st.caption("Role: Lead Developer | Stack: Node.js, Express, MongoDB Atlas, Groq AI SDK")
+        st.write("Engineered a web application parsing student CVs to translate academic coursework into marketable tech industry offerings.")
         st.link_button("🌐 Launch Live System", "https://tuk-mapping-system-frontend.vercel.app")
 
     with tab4:
         st.subheader("Data Entry & Digitisation | COSEKE Kenya Ltd")
-        st.caption("May 2023 – February 2025 | Nairobi, Kenya[cite: 5]")
-        st.write("Managed high-volume document extraction, cleaning, and indexing for enterprise clients including Kenya Police HQ, KPLC, and the ICT Authority[cite: 5].")
+        st.caption("May 2023 – February 2025 | Nairobi, Kenya")
+        st.write("Managed high-volume document extraction, cleaning, and indexing for enterprise clients including Kenya Police HQ, KPLC, and the ICT Authority.")
 
 # 4. QUALIFICATIONS & EDUCATION
 elif navigation == "Qualifications & Education":
@@ -290,9 +290,9 @@ elif navigation == "Qualifications & Education":
         st.subheader("🏫 Academic Qualifications")
         st.markdown("""
         **Bachelor of Science in Information Science (Informatics)**  
-        *Technical University of Kenya (Graduating 2026)*[cite: 5]
+        *Technical University of Kenya (Graduating 2026)*
         
-        **Core Focus Areas:** Database Design & Management, Enterprise IT Systems, Software Programming (Python, JavaScript, PHP), Information Security & Auditing[cite: 5].
+        **Core Focus Areas:** Database Design & Management, Enterprise IT Systems, Software Programming (Python, JavaScript, PHP), Information Security & Auditing.
         """)
     with col2:
         st.subheader("📜 Industry Certifications")
@@ -312,9 +312,9 @@ elif navigation == "Project Scope & Cost Analysis":
     
     with st.form("scope_engine_form"):
         service_type = st.selectbox("1. Select Required Service:", [
-            "Custom Web Portal & Database (PHP/PostgreSQL)[cite: 5, 9]", 
-            "Zero-Hallucination AI Chatbot (RAG/Groq)[cite: 5, 7]", 
-            "Enterprise Data Digitisation & Structuring[cite: 5, 8]",
+            "Custom Web Portal & Database (PHP/PostgreSQL)", 
+            "Zero-Hallucination AI Chatbot (RAG/Groq)", 
+            "Enterprise Data Digitisation & Structuring",
             "Full-Stack Software Architecture Consultation"
         ])
         
